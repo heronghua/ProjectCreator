@@ -15,7 +15,8 @@
 #define INCBIN_STYLE INCBIN_STYLE_SNAKE
 #define INCBIN_PREFIX g_
 #include <incbin.h>
-#include "thread_pool.h"
+#include "ThreadPool.h"
+#include "ProjectCreatorFactory.h"
 
 using namespace std;
 
@@ -90,6 +91,8 @@ int main(int argc, char *argv[])
   ThreadPool pool(4); 
 
   auto result=pool.enqueue(replaceKeyWithValue,content, key, value, destFilePath);
+  auto android = ProjectCreatorFactory::Create(ProjectCreatorFactory::Type::Android);
+  android->createProject();
 
   return 0;
 }
