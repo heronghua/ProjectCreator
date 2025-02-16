@@ -35,7 +35,7 @@ INCBIN(asset, "../resource/data.txt");
 
 /// Credits: https://stackoverflow.com/a/13059195
 /// https://stackoverflow.com/questions/13059091/
-struct membuf: std::streambuf {
+struct membuf: streambuf {
   membuf(char const* base, size_t size) {
     char* p(const_cast<char*>(base));
     this->setg(p, p, p + size);
@@ -45,18 +45,18 @@ struct membuf: std::streambuf {
 
 /// Credits: https://stackoverflow.com/a/13059195
 /// https://stackoverflow.com/questions/13059091/
-struct memstream: virtual membuf, std::istream {
+struct memstream: virtual membuf, istream {
 
   memstream(char const* base, char* const end)
     : membuf(base, reinterpret_cast<uintptr_t>(end) - reinterpret_cast<uintptr_t>(base) )
-    , std::istream(static_cast<std::streambuf*>(this)) { }
+    , istream(static_cast<streambuf*>(this)) { }
 
   memstream(char const* base, size_t size)
     : membuf(base, size)
-    , std::istream(static_cast<std::streambuf*>(this)) { }
+    , istream(static_cast<streambuf*>(this)) { }
 };
 
-void replaceKeyWithValue(string& content, const string& key, const std::string& value, const std::string& destFilePathStr) {
+void replaceKeyWithValue(string& content, const string& key, const string& value, const string& destFilePathStr) {
 
     // Replace the key with its corresponding value in the stringstream contents
     string newContent = content;
@@ -72,17 +72,13 @@ void replaceKeyWithValue(string& content, const string& key, const std::string& 
     if (!filesystem::exists(dir)) {
         filesystem::create_directories(dir);    
     }
-    std::ofstream destFile(destFilePathStr);
+    ofstream destFile(destFilePathStr);
     if (!destFile.is_open()) {
-        throw std::runtime_error("Failed to open destination file for writing.");
+        throw runtime_error("Failed to open destination file for writing.");
     }
     destFile << newContent;
 }
 
-int add(int a,int b){
-
-    return a+b;
-}
 int main(int argc, char *argv[])
 {
   string content = string(g_asset_data, g_asset_data + g_asset_size);
