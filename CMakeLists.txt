@@ -23,4 +23,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 #--------- Main Target -------------#
 
-add_executable(AndroidProjectCreator src/App.cpp)
+add_executable(AndroidProjectCreator 
+        src/App.cpp
+        src/IHelper.cpp
+)
