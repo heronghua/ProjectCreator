@@ -28,7 +28,7 @@ using namespace std;
  *  const unsigned char* const g_asset_end;    // g_<<LABEL>>_end 
  *  const unsinged int         g_asset_size;   // g_<<LABEL>>_size 
  */
-INCBIN(asset, "../resource/data.txt");
+INCBIN(asset, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/strings.template");
 
 #define MEMORY_STREAM(label) \
   memstream( (char*) ((g_ ## label ## _data)),              \
