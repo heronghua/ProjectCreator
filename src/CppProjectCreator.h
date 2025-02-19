@@ -11,7 +11,7 @@ class CppProjectCreator : public IProjectCreator
 {
 
     public:
-        void createProject() override
+        void createProject(string& projectName,string& packageName) override
         {
 
         }

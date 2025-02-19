@@ -7,10 +7,13 @@
 
 #ifndef I_PROJECT_CREATOR
 #define I_PROJECT_CREATOR 1
+#include <string>
+
+using namespace std;
 class IProjectCreator
 {
     public:
-        virtual void createProject() = 0;
+        virtual void createProject(string& projectName,string& packageName) = 0;
         virtual ~IProjectCreator() = default;
 };
 #endif /* ifndef I_PROJECT_CREATOR */

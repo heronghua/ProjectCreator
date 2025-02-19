@@ -60,7 +60,7 @@ struct memstream: virtual membuf, istream {
 class AndroidProjectCreator : public IProjectCreator
 {
     public:
-        void createProject() override 
+        void createProject(string& projectName,string& packageName) override
         {
           std::cout << "creating android project" << std::endl;
           string content = string(g_asset_data, g_asset_data + g_asset_size);
