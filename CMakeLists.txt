@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0)
-project(AndroidProjectCreator)
+project(ProjectCreator)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_VERBOSE_MAKEFILE ON)
@@ -23,7 +23,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 
 #--------- Main Target -------------#
 
-add_executable(AndroidProjectCreator 
+add_executable(ProjectCreator 
         src/App.cpp
         src/IHelper.cpp
 )
