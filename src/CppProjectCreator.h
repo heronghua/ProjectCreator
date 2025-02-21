@@ -20,7 +20,7 @@ INCBIN(gitignore, "../resource/TemplateCpp/.gitignore");
 INCBIN(cmakelists, "../resource/TemplateCpp/CMakeLists.txt");
 INCBIN(app, "../resource/TemplateCpp/src/App.cpp");
 INCBIN(res, "../resource/TemplateCpp/resource/data.txt");
-INCBIN(incbin, "../resource/TemplateCpp/_build/include/incbin.h");
+INCBIN(incbin, "../resource/TemplateCpp/incbin.oft");
 INCBIN(vimconf, "../resource/TemplateCpp/.vim/qrc.vim");
 
 class CppProjectCreator : public IProjectCreator
