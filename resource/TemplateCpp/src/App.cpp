@@ -15,6 +15,8 @@
  */
 INCBIN(asset, "../resource/data.txt");
 
+using namespace std;
+
 #define MEMORY_STREAM(label) \
   memstream( (char*) ((g_ ## label ## _data)),              \
              (char*) ((g_ ##label ## _data) + (g_ ## label ##_size)))
@@ -44,12 +46,12 @@ struct memstream: virtual membuf, istream {
 
 // Read all lines from some input stream
 // and print on stdout.
-void print_lines(std::stream& is)
+void print_lines(std::istream& is)
 {
 	std::string line;
 	int n = 0;
 	while(std::getline(is,line) && n < 25)
-		std::out << " line[" << n++ << "] = " << line << std::endl;
+		std::cout << " line[" << n++ << "] = " << line << std::endl;
 	
 }
 
