@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
             if (equalsPos != string::npos) {
                 ProjectName = option.substr(equalsPos + 1);
             }
-        } else if (option.find("--packageName") == 0){
+        } else if (option.find("--PackageName") == 0){
             size_t equalsPos = option.find('=');
             if (equalsPos != string::npos) {
                 packageName = option.substr(equalsPos + 1);

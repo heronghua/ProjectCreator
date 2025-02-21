@@ -5,15 +5,24 @@
 	 Created Time: Sun Feb  9 14:03:52 2025
  ************************************************************************/
 #include "IHelper.h"
+#include <iostream>
+using namespace std;
 
-void replaceKeyWithValue(string& content, const string& key, const string& value, const string& destFilePathStr) {
+void replaceKeyWithValue(string& content, string* key, string* value, const string& destFilePathStr) 
+{
+
+    std::cout << "key" << key << std::endl;
+    std::cout << "value:" << value << std::endl;
 
     // Replace the key with its corresponding value in the stringstream contents
     string newContent = content;
-    size_t pos = newContent.find(key);
-    while (pos != string::npos) {
-        newContent.replace(pos, key.length(), value);
-        pos = newContent.find(key, pos + value.length());
+    if (key && value) {
+        size_t pos = newContent.find(*key);
+        while (pos != string::npos) {
+            newContent.replace(pos, key->length(), *value);
+            pos = newContent.find(*key, pos + value->length());
+        }
+
     }
 
     // Write the updated contents to the destination file

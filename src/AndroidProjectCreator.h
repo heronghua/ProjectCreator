@@ -71,7 +71,7 @@ class AndroidProjectCreator : public IProjectCreator
           ThreadPool pool(4); 
 
  //         auto result=
-         pool.enqueue(replaceKeyWithValue,content, key, value, destFilePath);
+         pool.enqueue(replaceKeyWithValue,content, &key, &value, destFilePath);
 //          result.get();
 
 
