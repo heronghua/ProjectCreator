@@ -12,9 +12,10 @@
 #include <fstream>
 #include <sstream>
 #include <filesystem>
+#include <map>
 
 using namespace std;
 
-void replaceKeyWithValue(string& content, string* key, string* value, const string& destFilePathStr);
+void replaceKeyWithValue(string& content, std::shared_ptr<std::map<string,string>> map, const string& destFilePathStr);
 
 #endif /** ifndef I_HELPER */

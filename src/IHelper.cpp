@@ -6,21 +6,22 @@
  ************************************************************************/
 #include "IHelper.h"
 #include <iostream>
-using namespace std;
 
-void replaceKeyWithValue(string& content, string* key, string* value, const string& destFilePathStr) 
+void replaceKeyWithValue(string& content, std::shared_ptr<std::map<string,string>> contentMap, const string& destFilePathStr) 
 {
-
-    std::cout << "key" << key << std::endl;
-    std::cout << "value:" << value << std::endl;
-
     // Replace the key with its corresponding value in the stringstream contents
     string newContent = content;
-    if (key && value) {
-        size_t pos = newContent.find(*key);
-        while (pos != string::npos) {
-            newContent.replace(pos, key->length(), *value);
-            pos = newContent.find(*key, pos + value->length());
+    if (contentMap) {
+        for (const auto& pair : *contentMap) {
+            string key = pair.first;
+            string value = pair.second;
+            std::cout << "key:" << key << std::endl;
+            std::cout << "value:" << value << std::endl;
+            size_t pos = newContent.find(key);
+            while (pos != string::npos) {
+                newContent.replace(pos, key.length(), value);
+                pos = newContent.find(key, pos + value.length());
+            }
         }
 
     }

@@ -44,27 +44,27 @@ class CppProjectCreator : public IProjectCreator
 
             string destFilePath = projectName + filesystem::path::preferred_separator + ".gitignore";
             string content = string(g_gitignore_data, g_gitignore_data + g_gitignore_size);
-            pool.enqueue(replaceKeyWithValue,content, nullptr, nullptr, destFilePath);
+            pool.enqueue(replaceKeyWithValue,content, nullptr, destFilePath);
 
             string cmakeListsContent = string(g_cmakelists_data,g_cmakelists_data + g_cmakelists_size);
             string cmakeFilePath = projectName + filesystem::path::preferred_separator + "CMakeLists.txt";
-            pool.enqueue(replaceKeyWithValue,cmakeListsContent, nullptr, nullptr, cmakeFilePath);
+            pool.enqueue(replaceKeyWithValue,cmakeListsContent, nullptr, cmakeFilePath);
 
             string appContent = string(g_app_data,g_app_data + g_app_size);
             string appFilePath = projectName + filesystem::path::preferred_separator + "src" + filesystem::path::preferred_separator + "App.cpp";
-            pool.enqueue(replaceKeyWithValue,appContent, nullptr, nullptr, appFilePath);
+            pool.enqueue(replaceKeyWithValue,appContent, nullptr, appFilePath);
 
             string resContent = string(g_res_data,g_res_data + g_res_size);
             string resFilePath = projectName + filesystem::path::preferred_separator + "resource" + filesystem::path::preferred_separator + "data.txt";
-            pool.enqueue(replaceKeyWithValue,resContent, nullptr, nullptr, resFilePath);
+            pool.enqueue(replaceKeyWithValue,resContent, nullptr, resFilePath);
 
             string incbinContent = string(g_incbin_data,g_incbin_data + g_incbin_size);
             string incbinFilePath = projectName + filesystem::path::preferred_separator + "_build" + filesystem::path::preferred_separator + "include" + filesystem::path::preferred_separator + "incbin.h";
-            pool.enqueue(replaceKeyWithValue,incbinContent, nullptr, nullptr, incbinFilePath);
+            pool.enqueue(replaceKeyWithValue,incbinContent, nullptr, incbinFilePath);
 
             string vimConfContent = string(g_vimconf_data,g_vimconf_data + g_vimconf_size);
             string vimConfFilePath = projectName + filesystem::path::preferred_separator + ".vim" + filesystem::path::preferred_separator + "qrc.vim";
-            pool.enqueue(replaceKeyWithValue,vimConfContent, nullptr, nullptr, vimConfFilePath);
+            pool.enqueue(replaceKeyWithValue,vimConfContent, nullptr, vimConfFilePath);
 
         }
 };
