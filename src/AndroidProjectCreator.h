@@ -82,7 +82,7 @@ class AndroidProjectCreator : public IProjectCreator
                 packageNameToPath.replace(pos, 1, "/");
                 pos = packageNameToPath.find(".", pos + 2);
             }
-          string activityFilePath = projectName + filesystem::path::preferred_separator + packageNameToPath + filesystem::path::preferred_separator + "MainActivity.java";
+          string activityFilePath = projectName + filesystem::path::preferred_separator + "src" + filesystem::path::preferred_separator + packageNameToPath + filesystem::path::preferred_separator + "MainActivity.java";
           pool.enqueue(replaceKeyWithValue,activityStringContent, sharedMap, activityFilePath);
 
           string proguardStringContent = string(g_proguard_data,g_proguard_data + g_proguard_size);
