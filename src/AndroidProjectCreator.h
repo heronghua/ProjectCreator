@@ -37,6 +37,8 @@ INCBIN(icon_xhdpi, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/
 INCBIN(manifest, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/AndroidManifest.template");
 INCBIN(activity, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/java_file.template");
 INCBIN(proguard, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/proguard-project.txt");
+INCBIN(gradleZipA, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_a_zip");
+INCBIN(gradleZipB, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_b_zip");
 
 
 class AndroidProjectCreator : public IProjectCreator
