@@ -39,6 +39,10 @@ INCBIN(activity, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/te
 INCBIN(proguard, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/proguard-project.txt");
 INCBIN(gradleZipA, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_a_zip");
 INCBIN(gradleZipB, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_b_zip");
+INCBIN(gradleWrapper, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.jar");
+INCBIN(gradleWrapperProp, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.properties");
+INCBIN(gradleScript, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew");
+INCBIN(gradleScriptDos, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew.bat");
 
 
 class AndroidProjectCreator : public IProjectCreator
@@ -91,9 +95,25 @@ class AndroidProjectCreator : public IProjectCreator
           string proguardFilePath = projectName + filesystem::path::preferred_separator + "proguard-project.txt";
           pool.enqueue(replaceKeyWithValue,proguardStringContent, nullptr, proguardFilePath);
 
+          string gradleWrapperStringContent = string(g_gradleWrapper_data,g_gradleWrapper_data + g_gradleWrapper_size);
+          string gradleWrapperFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-wrapper.jar";
+          pool.enqueue(replaceKeyWithValue,gradleWrapperStringContent, nullptr, gradleWrapperFilePath);
+
+          string gradleWrapperPropStringContent = string(g_gradleWrapperProp_data,g_gradleWrapperProp_data + g_gradleWrapperProp_size);
+          string gradleWrapperPropFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-wrapper.properties";
+          pool.enqueue(replaceKeyWithValue,gradleWrapperPropStringContent, nullptr, gradleWrapperPropFilePath);
+
+          string gradleScriptStringContent = string(g_gradleScript_data,g_gradleScript_data + g_gradleScript_size);
+          string gradleScriptFilePath = projectName + filesystem::path::preferred_separator + "gradlew";
+          pool.enqueue(replaceKeyWithValue,gradleScriptStringContent, nullptr, gradleScriptFilePath);
+
+          string gradleScriptDosStringContent = string(g_gradleScriptDos_data,g_gradleScriptDos_data + g_gradleScriptDos_size);
+          string gradleScriptDosFilePath = projectName + filesystem::path::preferred_separator + "gradlew.bat";
+          pool.enqueue(replaceKeyWithValue,gradleScriptDosStringContent, nullptr, gradleScriptDosFilePath);
+
           string gradleZipA = string(g_gradleZipA_data,g_gradleZipA_data + g_gradleZipA_size);
           string gradleZipB = string(g_gradleZipB_data,g_gradleZipB_data + g_gradleZipB_size);
-          string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "grale" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-6.1.1-all.zip";
+          string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-6.1.1-all.zip";
           pool.enqueue(replaceKeyWithValueMultipleContent,gradleZipA,gradleZipB,nullptr,graeleZipFilePath);
 
 
@@ -103,5 +123,6 @@ class AndroidProjectCreator : public IProjectCreator
         }
 
 };
+
 
 #endif /* ifndef ANDROID_PROJECT_CREATOR */
