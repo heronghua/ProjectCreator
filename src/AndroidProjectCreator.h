@@ -91,6 +91,14 @@ class AndroidProjectCreator : public IProjectCreator
           string proguardFilePath = projectName + filesystem::path::preferred_separator + "proguard-project.txt";
           pool.enqueue(replaceKeyWithValue,proguardStringContent, nullptr, proguardFilePath);
 
+          string gradleZipA = string(g_gradleZipA_data,g_gradleZipA_data + g_gradleZipA_size);
+          string gradleZipB = string(g_gradleZipB_data,g_gradleZipB_data + g_gradleZipB_size);
+          string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "grale" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-6.1.1-all.zip";
+          pool.enqueue(replaceKeyWithValueMultipleContent,gradleZipA,gradleZipB,nullptr,graeleZipFilePath);
+
+
+
+
 
         }
 

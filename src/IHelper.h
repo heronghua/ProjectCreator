@@ -17,5 +17,6 @@
 using namespace std;
 
 void replaceKeyWithValue(string& content, std::shared_ptr<std::map<string,string>> map, const string& destFilePathStr);
+void replaceKeyWithValueMultipleContent(string& contentA,string& contentB, std::shared_ptr<std::map<string,string>> map, const string& destFilePathStr);
 
 #endif /** ifndef I_HELPER */
