@@ -36,6 +36,7 @@ INCBIN(icon_mdpi, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/t
 INCBIN(icon_xhdpi, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/ic_launcher_xhdpi.png");
 INCBIN(manifest, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/AndroidManifest.template");
 INCBIN(activity, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/java_file.template");
+INCBIN(layout, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/layout.template");
 INCBIN(proguard, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/proguard-project.txt");
 INCBIN(gradleZipA, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_a_zip");
 INCBIN(gradleZipB, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_b_zip");
@@ -43,6 +44,7 @@ INCBIN(gradleWrapper, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gr
 INCBIN(gradleWrapperProp, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.properties");
 INCBIN(gradleScript, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew");
 INCBIN(gradleScriptDos, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew.bat");
+INCBIN(buildGradle, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/build_gradle.template");
 
 
 class AndroidProjectCreator : public IProjectCreator
@@ -53,6 +55,10 @@ class AndroidProjectCreator : public IProjectCreator
           map<string,string> replaceMap;
           replaceMap["PROJECT_NAME"] = projectName;
           replaceMap["PACKAGE"] = packageName;
+          replaceMap["PLUGIN"] = "com.android.application";
+          replaceMap["TARGET"] = "30";
+          replaceMap["ARTIFACT_VERSION"] = "3.5.0";
+          replaceMap["BUILD_TOOL_REV"] = "29.0.3";
           ThreadPool pool(10); 
           auto sharedMap=std::make_shared<std::map<string,string>>(replaceMap);
 
@@ -116,9 +122,13 @@ class AndroidProjectCreator : public IProjectCreator
           string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-6.1.1-all.zip";
           pool.enqueue(replaceKeyWithValueMultipleContent,gradleZipA,gradleZipB,nullptr,graeleZipFilePath);
 
+          string buildGradleContent = string(g_buildGradle_data,g_buildGradle_data +g_buildGradle_size);
+          string buildGradleFilePath = projectName + filesystem::path::preferred_separator + "build.gradle";
+          pool.enqueue(replaceKeyWithValue,buildGradleContent,sharedMap,buildGradleFilePath);
 
-
-
+          string layoutContent = string(g_layout_data,g_layout_data +g_layout_size);
+          string layoutFilePath = projectName + filesystem::path::preferred_separator + "res" + filesystem::path::preferred_separator + "layout" + filesystem::path::preferred_separator + "activity_main.xml";
+          pool.enqueue(replaceKeyWithValue,layoutContent,sharedMap,layoutFilePath);
 
         }
 
