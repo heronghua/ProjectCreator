@@ -28,8 +28,19 @@ allprojects {
 apply plugin: 'PLUGIN'
 
 android {
+    namespace 'PACKAGE'
     compileSdkVersion TARGET
     buildToolsVersion 'BUILD_TOOL_REV'
+
+    defaultConfig {
+        applicationId "PACKAGE"
+        minSdkVersion 28
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+    }
 
     buildTypes {
         release {
