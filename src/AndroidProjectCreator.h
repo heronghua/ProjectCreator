@@ -58,9 +58,9 @@ class AndroidProjectCreator : public IProjectCreator
           replaceMap["PROJECT_NAME"] = projectName;
           replaceMap["PACKAGE"] = packageName;
           replaceMap["PLUGIN"] = "com.android.application";
-          replaceMap["TARGET"] = "30";
+          replaceMap["TARGET"] = "33";
           replaceMap["ARTIFACT_VERSION"] = "8.0.0";
-          replaceMap["BUILD_TOOL_REV"] = "29.0.3";
+          replaceMap["BUILD_TOOL_REV"] = "33.0.2";
           ThreadPool pool(10); 
           auto sharedMap=std::make_shared<std::map<string,string>>(replaceMap);
 
