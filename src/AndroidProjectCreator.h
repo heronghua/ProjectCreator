@@ -38,13 +38,15 @@ INCBIN(manifest, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/te
 INCBIN(activity, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/java_file.template");
 INCBIN(layout, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/layout.template");
 INCBIN(proguard, "../resource/TemplateAndroid/AndroidSdk/platforms/android-20/templates/proguard-project.txt");
-INCBIN(gradleZipA, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_a_zip");
-INCBIN(gradleZipB, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-6.1.1-all_part_b_zip");
+INCBIN(gradleZipA, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-8.0-bin.part_a_zip");
+INCBIN(gradleZipB, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-8.0-bin.part_b_zip");
 INCBIN(gradleWrapper, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.jar");
 INCBIN(gradleWrapperProp, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle-wrapper.properties");
 INCBIN(gradleScript, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew");
 INCBIN(gradleScriptDos, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradlew.bat");
 INCBIN(buildGradle, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/build_gradle.template");
+INCBIN(localProperties, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/local.properties");
+INCBIN(gradleProperties, "../resource/TemplateAndroid/AndroidSdk/tools/templates/gradle/wrapper/gradle/wrapper/gradle.properties");
 
 
 class AndroidProjectCreator : public IProjectCreator
@@ -57,7 +59,7 @@ class AndroidProjectCreator : public IProjectCreator
           replaceMap["PACKAGE"] = packageName;
           replaceMap["PLUGIN"] = "com.android.application";
           replaceMap["TARGET"] = "30";
-          replaceMap["ARTIFACT_VERSION"] = "3.5.0";
+          replaceMap["ARTIFACT_VERSION"] = "8.0.0";
           replaceMap["BUILD_TOOL_REV"] = "29.0.3";
           ThreadPool pool(10); 
           auto sharedMap=std::make_shared<std::map<string,string>>(replaceMap);
@@ -119,7 +121,7 @@ class AndroidProjectCreator : public IProjectCreator
 
           string gradleZipA = string(g_gradleZipA_data,g_gradleZipA_data + g_gradleZipA_size);
           string gradleZipB = string(g_gradleZipB_data,g_gradleZipB_data + g_gradleZipB_size);
-          string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-6.1.1-all.zip";
+          string graeleZipFilePath = projectName + filesystem::path::preferred_separator + "gradle" + filesystem::path::preferred_separator+"wrapper" + filesystem::path::preferred_separator + "gradle-8.0.0-bin.zip";
           pool.enqueue(replaceKeyWithValueMultipleContent,gradleZipA,gradleZipB,nullptr,graeleZipFilePath);
 
           string buildGradleContent = string(g_buildGradle_data,g_buildGradle_data +g_buildGradle_size);
@@ -132,6 +134,14 @@ class AndroidProjectCreator : public IProjectCreator
 
         }
 
+        string localPropertiesContent = string(g_localProperties_data,g_localProperties_data + g_localProperties_size);
+        string localPropertiesFilePath = projectName + filesystem::path::preferred_separator + "local.properties";
+        pool.enqueue(replaceKeyWithValue,localPropertiesContent,sharedMap,localPropertiesFilePath);
+
+
+        string gradlePropertiesContent = string(g_gradleProperties_data,g_gradleProperties_data + g_gradleProperties_size);
+        string gradlePropertiesFilePath = projectName + filesystem::path::preferred_separator + "gradle.properties";
+        pool.enqueue(replaceKeyWithValue,gradlePropertiesContent,sharedMap,gradlePropertiesFilePath);
 };
 
 
