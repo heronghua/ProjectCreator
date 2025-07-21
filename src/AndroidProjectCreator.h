@@ -132,16 +132,16 @@ class AndroidProjectCreator : public IProjectCreator
           string layoutFilePath = projectName + filesystem::path::preferred_separator + "res" + filesystem::path::preferred_separator + "layout" + filesystem::path::preferred_separator + "activity_main.xml";
           pool.enqueue(replaceKeyWithValue,layoutContent,sharedMap,layoutFilePath);
 
-        }
-
         string localPropertiesContent = string(g_localProperties_data,g_localProperties_data + g_localProperties_size);
         string localPropertiesFilePath = projectName + filesystem::path::preferred_separator + "local.properties";
         pool.enqueue(replaceKeyWithValue,localPropertiesContent,sharedMap,localPropertiesFilePath);
 
-
         string gradlePropertiesContent = string(g_gradleProperties_data,g_gradleProperties_data + g_gradleProperties_size);
         string gradlePropertiesFilePath = projectName + filesystem::path::preferred_separator + "gradle.properties";
         pool.enqueue(replaceKeyWithValue,gradlePropertiesContent,sharedMap,gradlePropertiesFilePath);
+
+
+        }
 };
 
 
